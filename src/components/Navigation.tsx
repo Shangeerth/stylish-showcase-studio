@@ -21,10 +21,6 @@ const Navigation = () => {
     { href: "/", label: "Home" },
     { href: "/#about", label: "About" },
     { href: "/#projects", label: "Projects" },
-    { href: "/project/ecommerce", label: "E-Commerce" },
-    { href: "/project/ai-dashboard", label: "AI Dashboard" },
-    { href: "/project/design-system", label: "Design System" },
-    { href: "/project/mobile-app", label: "Mobile App" },
     { href: "/#contact", label: "Contact" },
   ];
 
