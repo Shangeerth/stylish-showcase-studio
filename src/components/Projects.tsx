@@ -1,44 +1,11 @@
 
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { projects } from "@/data/projects";
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce solution built with React, Node.js, and Stripe integration. Features include real-time inventory, advanced search, and mobile-first design.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      github: "#",
-      live: "#"
-    },
-    {
-      title: "AI Dashboard",
-      description: "An analytics dashboard featuring AI-powered insights, real-time data visualization, and predictive analytics for business intelligence.",
-      tech: ["Next.js", "Python", "TensorFlow", "D3.js"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-      github: "#",
-      live: "#"
-    },
-    {
-      title: "Design System",
-      description: "A comprehensive design system and component library used across multiple products, ensuring consistency and scalability.",
-      tech: ["React", "Storybook", "Figma", "TypeScript"],
-      image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
-      github: "#",
-      live: "#"
-    },
-    {
-      title: "Mobile App",
-      description: "A cross-platform mobile application for fitness tracking with social features, built using React Native and Firebase.",
-      tech: ["React Native", "Firebase", "Redux", "Expo"],
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop",
-      github: "#",
-      live: "#"
-    }
-  ];
-
   return (
     <section id="projects" className="py-32 bg-gradient-to-br from-background to-secondary/20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,7 +22,7 @@ const Projects = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <Card 
-              key={project.title} 
+              key={project.id} 
               className="glass-card border-border/50 overflow-hidden group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 animate-fade-in-up"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
@@ -83,8 +50,8 @@ const Projects = () => {
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.slice(0, 4).map((tech) => (
                     <span 
                       key={tech} 
                       className="px-3 py-1 text-sm bg-primary/20 text-primary rounded-full border border-primary/30"
@@ -92,7 +59,18 @@ const Projects = () => {
                       {tech}
                     </span>
                   ))}
+                  {project.tech.length > 4 && (
+                    <span className="px-3 py-1 text-sm bg-muted/20 text-muted-foreground rounded-full border border-muted/30">
+                      +{project.tech.length - 4} more
+                    </span>
+                  )}
                 </div>
+                <Link to={`/project/${project.id}`}>
+                  <Button variant="outline" className="group w-full">
+                    View Details
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
